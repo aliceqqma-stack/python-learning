@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weighted Grade Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1>Weighted Grade Calculator</h1>
+      <p class="subtitle">Add your assessments, enter each score and weight, then calculate your final weighted grade.</p>
+
+      <!-- This area will contain all assessment input rows -->
+      <div id="assessment-list"></div>
+
+      <div class="button-group">
+        <button id="add-assessment-btn" type="button">Add Assessment</button>
+        <button id="calculate-btn" type="button">Calculate</button>
+      </div>
+
+      <!-- This message tells the user whether the total weight is valid -->
+      <p id="weight-message" class="message"></p>
+
+      <!-- Calculation results will appear here -->
+      <div id="results" class="results"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
