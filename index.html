@@ -3,36 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>University Semester Grade Calculator</title>
+  <title>Student Academic Dashboard</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <main class="app">
-    <section class="hero">
-      <p class="eyebrow">University Grade Tool</p>
-      <h1>University Semester Grade Calculator</h1>
-      <p class="subtitle">
-        Add your modules, enter assessments, and calculate both module grades and your semester average.
-      </p>
+    <header class="hero glass">
+      <p class="eyebrow">Student Academic Dashboard</p>
+      <h1>Plan, simulate and track your semester performance.</h1>
+      <p class="subtitle">A modern dashboard for module grades, goals, what-if simulations and academic analytics.</p>
+    </header>
+
+    <section class="summary-grid">
+      <article class="summary-card glass">
+        <span>Semester Average</span>
+        <strong id="semester-average">0.00</strong>
+      </article>
+      <article class="summary-card glass">
+        <span>Classification</span>
+        <strong id="semester-classification">-</strong>
+      </article>
+      <article class="summary-card glass">
+        <span>Status</span>
+        <strong id="semester-status">Add data</strong>
+      </article>
     </section>
 
-    <section class="toolbar">
-      <button id="add-module-btn" type="button">+ Add Module</button>
-      <button id="calculate-btn" type="button" class="primary-btn">Calculate Semester</button>
-      <button id="clear-btn" type="button" class="danger-btn">Clear All</button>
+    <section class="toolbar glass">
+      <button id="add-module-btn">+ Add Module</button>
+      <button id="clear-btn" class="danger-btn">Clear All</button>
     </section>
 
-    <!-- JavaScript will create module cards inside this area -->
     <section id="modules-container" class="modules-container"></section>
 
-    <!-- Semester result card -->
-    <section id="semester-result" class="semester-result hidden">
-      <p>Semester Average Grade</p>
-      <h2 id="semester-average">0.00</h2>
-      <span id="semester-classification" class="classification-badge">-</span>
-      <div class="progress-track">
-        <div id="semester-progress" class="progress-bar"></div>
-      </div>
+    <section class="analytics-grid">
+      <article class="glass chart-card">
+        <h2>Module Performance</h2>
+        <canvas id="moduleChart"></canvas>
+      </article>
+      <article class="glass chart-card">
+        <h2>Assessment Weight</h2>
+        <canvas id="weightChart"></canvas>
+      </article>
     </section>
   </main>
 
