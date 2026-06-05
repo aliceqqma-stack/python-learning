@@ -35,6 +35,15 @@ function classify(grade) {
   return 'Fail';
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
 function loadState() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -75,6 +84,29 @@ function animateNumber(element, target) {
     if (progress < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
+}
+
+function renderPreservingFocus(input) {
+  const selectionStart = input.selectionStart;
+  const selectionEnd = input.selectionEnd;
+  let selector = null;
+
+  if (input.dataset.moduleField) {
+    selector = `[data-module-field="${input.dataset.moduleField}"]`;
+  } else if (input.dataset.assessment) {
+    selector = `[data-assessment="${input.dataset.assessment}"][data-field="${input.dataset.field}"]`;
+  } else if (input.dataset.whatif) {
+    selector = `[data-whatif="${input.dataset.whatif}"]`;
+  }
+
+  render();
+  const replacement = selector ? moduleDetail.querySelector(selector) : null;
+  if (!replacement) return;
+
+  replacement.focus();
+  if (typeof selectionStart === 'number' && typeof selectionEnd === 'number') {
+    replacement.setSelectionRange(selectionStart, selectionEnd);
+  }
 }
 
 function addModule() {
@@ -125,7 +157,6 @@ function updateField(moduleId, assessmentId, field, value) {
     if (assessment.isFinal) module.finalExamScore = Number(assessment.score) || 0;
   }
   saveState();
-  render();
 }
 
 function applyWhatIf(moduleId, score) {
@@ -134,7 +165,6 @@ function applyWhatIf(moduleId, score) {
   const final = module.assessments.find(item => item.isFinal);
   if (final) final.score = Number(score);
   saveState();
-  render();
 }
 
 function neededFinalScore(module) {
@@ -151,7 +181,7 @@ function renderModuleList() {
     const grade = getModuleGrade(module);
     const active = module.id === selectedModuleId ? 'active' : '';
     return `<button class="module-tab ${active}" data-select="${module.id}">
-      <span>${module.name}</span><strong>${grade.toFixed(1)}</strong>
+      <span>${escapeHtml(module.name)}</span><strong>${grade.toFixed(1)}</strong>
     </button>`;
   }).join('');
 }
@@ -169,7 +199,7 @@ function renderDetail() {
 
   moduleDetail.innerHTML = `
     <div class="detail-header">
-      <input class="module-title" value="${module.name}" data-module-field="name">
+      <input class="module-title" value="${escapeHtml(module.name)}" data-module-field="name">
       <button class="danger-btn" data-delete-module="${module.id}">Delete Module</button>
     </div>
     <div class="module-overview">
@@ -181,7 +211,7 @@ function renderDetail() {
     <h3>Assessments</h3>
     ${module.assessments.map(item => `
       <div class="assessment-row">
-        <input value="${item.name}" data-assessment="${item.id}" data-field="name">
+        <input value="${escapeHtml(item.name)}" data-assessment="${item.id}" data-field="name">
         <input type="number" value="${item.score}" data-assessment="${item.id}" data-field="score">
         <input type="number" value="${item.weight}" data-assessment="${item.id}" data-field="weight">
         <label><input type="radio" name="final-assessment" ${item.isFinal ? 'checked' : ''} data-final="${item.id}"> Final</label>
@@ -245,6 +275,7 @@ moduleDetail.addEventListener('input', event => {
   if (event.target.dataset.moduleField) updateField(module.id, null, event.target.dataset.moduleField, event.target.value);
   if (event.target.dataset.assessment) updateField(module.id, event.target.dataset.assessment, event.target.dataset.field, event.target.value);
   if (event.target.dataset.whatif) applyWhatIf(module.id, event.target.value);
+  renderPreservingFocus(event.target);
 });
 
 moduleDetail.addEventListener('change', event => {
