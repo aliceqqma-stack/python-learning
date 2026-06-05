@@ -1,38 +1,41 @@
-# python-learning
+# University Semester Grade Calculator
 
-# Weighted Grade Calculator
-
-A beginner-friendly web project built with HTML, CSS and JavaScript.
+A beginner-friendly project built with HTML, CSS and JavaScript.
 
 ## Features
 
-- Add multiple assessments
-- Enter assessment name
-- Enter score
-- Enter weight percentage
-- Validate that total weight equals 100%
-- Calculate weighted contributions
-- Display final weighted grade
+- Multiple modules (BUS268, BUS269, etc.)
+- Multiple assessments per module
+- Module weighted grade calculation
+- Weight validation (100% per module)
+- Semester average calculation
+- UK degree classification
+- Modern responsive design
+- localStorage auto-save
+- Clear All button
+- Progress bar and result cards
 
 ## Files
 
 - index.html
 - style.css
 - script.js
+- README.md
 
 ## How to Use
 
-1. Open index.html in a web browser.
-2. Click 'Add Assessment' to create more assessment rows.
-3. Enter Name, Score and Weight for each assessment.
-4. Ensure the total weight equals 100%.
-5. Click 'Calculate'.
-6. View each weighted contribution and the final weighted grade.
+1. Add a module.
+2. Add assessments inside each module.
+3. Enter score and weight.
+4. Click Calculate Semester.
+5. View module grades and semester average.
+6. Data is automatically saved.
+7. Use Clear All to reset everything.
 
-## Example
+## UK Classification
 
-Assignment 1: 80 (40%)
-Assignment 2: 70 (20%)
-Final Exam: 90 (40%)
-
-Final Weighted Grade = 82
+- 70+ = First / Distinction
+- 60–69 = Upper Second / Merit
+- 50–59 = Lower Second / Pass
+- 40–49 = Third / Pass
+- Below 40 = Fail
