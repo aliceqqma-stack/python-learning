@@ -1,19 +1,32 @@
-# University Semester Grade Calculator
+# Student Academic Dashboard
 
-A beginner-friendly project built with HTML, CSS and JavaScript.
+Modern academic dashboard built with HTML, CSS and JavaScript.
 
 ## Features
 
-- Multiple modules (BUS268, BUS269, etc.)
-- Multiple assessments per module
-- Module weighted grade calculation
-- Weight validation (100% per module)
-- Semester average calculation
-- UK degree classification
-- Modern responsive design
+- Semester dashboard overview
+- Animated grade cards
+- Multiple modules
+- Multiple assessments
+- Real-time grade updates
+- Progress bars
+- Goal calculator (What score do I need?)
+- What-if simulator
+- Module performance chart
+- Assessment weight pie chart
 - localStorage auto-save
-- Clear All button
-- Progress bar and result cards
+- Delete modules and assessments
+- Weight validation warnings
+- Responsive design
+- Apple / Notion / Linear inspired UI
+
+## Classification Rules
+
+70+ = Distinction / First
+60-69 = Merit / Upper Second
+50-59 = Pass / Lower Second
+40-49 = Third
+Below 40 = Fail
 
 ## Files
 
@@ -21,21 +34,3 @@ A beginner-friendly project built with HTML, CSS and JavaScript.
 - style.css
 - script.js
 - README.md
-
-## How to Use
-
-1. Add a module.
-2. Add assessments inside each module.
-3. Enter score and weight.
-4. Click Calculate Semester.
-5. View module grades and semester average.
-6. Data is automatically saved.
-7. Use Clear All to reset everything.
-
-## UK Classification
-
-- 70+ = First / Distinction
-- 60–69 = Upper Second / Merit
-- 50–59 = Lower Second / Pass
-- 40–49 = Third / Pass
-- Below 40 = Fail
