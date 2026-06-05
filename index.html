@@ -8,44 +8,39 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <main class="app">
-    <header class="hero glass">
-      <p class="eyebrow">Student Academic Dashboard</p>
-      <h1>Plan, simulate and track your semester performance.</h1>
-      <p class="subtitle">A modern dashboard for module grades, goals, what-if simulations and academic analytics.</p>
+  <main class="app-shell">
+    <header class="topbar glass">
+      <div>
+        <p class="eyebrow">Student Academic Dashboard</p>
+        <h1>Track your semester like a real product dashboard.</h1>
+      </div>
+      <div class="top-actions">
+        <button id="add-module-btn">+ Module</button>
+        <button id="clear-btn" class="danger-btn">Clear All</button>
+      </div>
     </header>
 
     <section class="summary-grid">
-      <article class="summary-card glass">
-        <span>Semester Average</span>
-        <strong id="semester-average">0.00</strong>
-      </article>
-      <article class="summary-card glass">
-        <span>Classification</span>
-        <strong id="semester-classification">-</strong>
-      </article>
-      <article class="summary-card glass">
-        <span>Status</span>
-        <strong id="semester-status">Add data</strong>
-      </article>
+      <article class="summary-card glass"><span>Semester Average</span><strong id="semester-average">0.00</strong></article>
+      <article class="summary-card glass"><span>Classification</span><strong id="semester-classification">-</strong></article>
+      <article class="summary-card glass"><span>Status</span><strong id="semester-status">Add data</strong></article>
     </section>
 
-    <section class="toolbar glass">
-      <button id="add-module-btn">+ Add Module</button>
-      <button id="clear-btn" class="danger-btn">Clear All</button>
-    </section>
+    <section class="dashboard-grid">
+      <aside class="panel glass">
+        <h2>Modules</h2>
+        <div id="module-list"></div>
+      </aside>
 
-    <section id="modules-container" class="modules-container"></section>
+      <section class="panel glass detail-panel">
+        <div id="module-detail"></div>
+      </section>
 
-    <section class="analytics-grid">
-      <article class="glass chart-card">
-        <h2>Module Performance</h2>
+      <aside class="panel glass analytics-panel">
+        <h2>Analytics</h2>
         <canvas id="moduleChart"></canvas>
-      </article>
-      <article class="glass chart-card">
-        <h2>Assessment Weight</h2>
         <canvas id="weightChart"></canvas>
-      </article>
+      </aside>
     </section>
   </main>
 
