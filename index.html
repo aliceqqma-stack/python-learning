@@ -3,43 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Academic Dashboard</title>
+  <title>Academic Orbit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
   <main class="app-shell">
     <header class="topbar glass">
       <div>
-        <p class="eyebrow">Student Academic Dashboard</p>
-        <h1>Track your semester like a real product dashboard.</h1>
+        <p class="eyebrow"><span class="signal-dot"></span> Academic Orbit</p>
+        <h1>Shape your semester.<br><span>See where it leads.</span></h1>
+        <p class="hero-copy">A live academic command center for grades, goals, and degree-class predictions.</p>
       </div>
       <div class="top-actions">
-        <button id="add-module-btn">+ Module</button>
-        <button id="clear-btn" class="danger-btn">Clear All</button>
+        <button id="add-module-btn" class="primary-btn">+ Add module</button>
+        <button id="clear-btn" class="subtle-btn">Reset data</button>
       </div>
     </header>
 
     <section class="summary-grid">
-      <article class="summary-card glass"><span>Semester Average</span><strong id="semester-average">0.00</strong></article>
-      <article class="summary-card glass"><span>Classification</span><strong id="semester-classification">-</strong></article>
-      <article class="summary-card glass"><span>Status</span><strong id="semester-status">Add data</strong></article>
+      <article class="gpa-card glass">
+        <div class="gpa-orbit">
+          <div class="gpa-ring" id="gpa-ring">
+            <div>
+              <span>Semester GPA</span>
+              <strong id="semester-gpa">0.00</strong>
+              <small>out of 4.00</small>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="card-kicker">Live performance</p>
+          <h2 id="semester-status">Add your results</h2>
+          <p id="gpa-message">Your GPA and prediction will update as you edit.</p>
+          <div id="classification-badge" class="classification-badge badge-neutral">Awaiting data</div>
+        </div>
+      </article>
+
+      <article class="metric-card glass">
+        <span class="metric-icon">%</span>
+        <p>Semester average</p>
+        <strong id="semester-average">0.00</strong>
+        <small>Credit-weighted result</small>
+      </article>
+
+      <article class="metric-card glass">
+        <span class="metric-icon">PR</span>
+        <p>Degree prediction</p>
+        <strong id="degree-prediction">Awaiting data</strong>
+        <small id="prediction-detail">Based on this semester</small>
+      </article>
+
+      <article class="metric-card glass">
+        <span class="metric-icon">MO</span>
+        <p>Active modules</p>
+        <strong id="module-count">0</strong>
+        <small id="credit-count">0 credits tracked</small>
+      </article>
     </section>
 
     <section class="dashboard-grid">
-      <aside class="panel glass">
-        <h2>Modules</h2>
-        <div id="module-list"></div>
+      <aside class="panel glass module-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="card-kicker">Your semester</p>
+            <h2>Modules</h2>
+          </div>
+          <button id="add-module-mini" class="icon-btn" aria-label="Add module">+</button>
+        </div>
+        <div id="module-list" class="module-list"></div>
       </aside>
 
       <section class="panel glass detail-panel">
         <div id="module-detail"></div>
       </section>
 
-      <aside class="panel glass analytics-panel">
-        <h2>Analytics</h2>
-        <canvas id="moduleChart"></canvas>
-        <canvas id="weightChart"></canvas>
+      <aside class="analytics-column">
+        <article class="panel glass chart-card">
+          <div class="panel-heading">
+            <div>
+              <p class="card-kicker">Performance</p>
+              <h2>Module grades</h2>
+            </div>
+          </div>
+          <div class="chart-wrap"><canvas id="moduleChart"></canvas></div>
+        </article>
+        <article class="panel glass chart-card">
+          <div class="panel-heading">
+            <div>
+              <p class="card-kicker">Selected module</p>
+              <h2>Assessment mix</h2>
+            </div>
+          </div>
+          <div class="chart-wrap doughnut-wrap"><canvas id="weightChart"></canvas></div>
+        </article>
       </aside>
     </section>
   </main>
